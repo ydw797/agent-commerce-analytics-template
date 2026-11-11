@@ -1,0 +1,27 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "agent-commerce-analytics-template",
+	"main": "./src/analytics-worker/index.ts",
+	"compatibility_date": "2025-10-08",
+	"compatibility_flags": ["nodejs_compat"],
+	"observability": {
+		"enabled": true
+	},
+	"upload_source_maps": true,
+	"assets": {
+		"directory": "./dist/client",
+		"not_found_handling": "single-page-application",
+		"run_worker_first": ["/api", "/api/*"]
+	},
+	"kv_namespaces": [
+		{
+			"binding": "EVENT_STORE",
+			"id": "f9c447feff834b128c24576a5ac42c98"
+		}
+	],
+	"vars": {
+		"MERCHANT_NAME": "My Store",
+		"SEED_DEMO_DATA": "true",
+		"EVENT_RETENTION_DAYS": "30"
+	}
+}
